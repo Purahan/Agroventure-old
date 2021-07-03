@@ -1,3 +1,44 @@
+<?php
+	//ini_set('display_errors', 1);
+	//error_reporting(E_ALL);
+	//Start Session
+	session_start();
+?>
+<?php
+$error='';
+if(!empty($_POST)) {
+	$servername = "localhost";
+	$username = "root";
+	$password = "";
+	$dbname = "agroventure";
+
+	// Create connection
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	//Check connection
+	if ($conn->connect_error) {
+		//die("Connection failed: " . $conn->connect_error);
+		$error='Error connecting to website. Please try again.';
+	} else {
+
+		$sql = "INSERT INTO `users` (first_name, last_name, email, pwd, phone, gender, dob, user_type, created_on) VALUES ('".$_POST['fname']."', '".$_POST['lname']."', '".$_POST['email']."', '".md5($_POST['pwd'])."', '".$_POST['phone']."', '".$_POST['gender']."', '".$_POST['dob']."', 'seller', '".date("Y-m-d")."')";
+
+		if ($conn->query($sql) === FALSE) {
+			//die("Error: " . $sql . "<br>" . $conn->error);
+			if ($conn->errno == 1062){
+				$error='You already have an account with this email id';
+			} else{
+			//print_r($conn);
+			$error='Error in saving data. Please try again.';
+			}
+
+		} else {
+			//redirect to another page
+			header("Location: welcome.php");
+		}
+	}
+	$conn->close();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -26,11 +67,18 @@
                 </ul>
             </header>
         </div>
-        <form action="#" method="post">
+        <form action="sign-up.php" method="post" onsubmit="return checkForm();">
             <div class="container bg-light my-5 py-4 px-5">
                 <h1 class="fs-1">Register as a Seller</h1>
                 <p>Please fill in this form to create an account as a Seller.</p>
                 <hr>
+                <!--If any error it will be printed here-->
+                <?php if(!empty($error)) { ?>						
+						<div class="error">
+							<?php echo $error;?>
+						</div>
+						<?php } ?>
+
                 <div class="row g-3">
                     <div class="col">
                         <label for="f-name">First Name</label>
@@ -57,8 +105,8 @@
                         <label for="gender">Gender</label>
                         <select class="form-control my-2" name="gender" id="gender">
                             <optgroup label="Gender">
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
+                            <option value="m">Male</option>
+                            <option value="f">Female</option>
                             </optgroup>
                         </select>
                     </div>
@@ -96,6 +144,6 @@
                 <p>Already have a Seller Account? <a href="Sign-in.html">Sign in</a>.</p>
             </div>
         </form>
-        
+        <script src="sign-up.js"></script>
     </body>
 </html>
