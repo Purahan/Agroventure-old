@@ -1,3 +1,42 @@
+<?php
+	//Start Session
+	session_start();
+?>
+<?php
+$error='';
+if(!empty($_POST)) {
+	$servername = "localhost";
+	$username = "root";
+	$password = "";
+	$dbname = "agroventure";
+
+	// Create connection
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	// Check connection
+	if ($conn->connect_error) {
+		//die("Connection failed: " . $conn->connect_error);
+		$error='Error connecting to website. Please try again.';
+	} else {
+		$sql = "SELECT first_name, last_name, email, gender FROM `user` WHERE email='".$_POST['email']."' AND pwd=MD5('".$_POST['pwd']."')";
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) {
+		// output data of each row
+			while($row = $result->fetch_assoc()) {
+				echo "Name:".$row["Username"]."<br> Email: ".$row["Email"]."<br>";
+				
+				$_SESSION['fname'] = $row["first_name"];
+                $_SESSION['lname'] = $row["last_name"];
+				$_SESSION['email'] = $row["email"];
+				$_SESSION['gender'] = $row["gender"];
+				header("Location: dashboard.php");
+			}
+		} else {
+			$error='Username or Password is incorrect.';
+		}
+	}
+	$conn->close();
+}?>
 <!DOCTYPE html>
 <html lang="en">
     <head>

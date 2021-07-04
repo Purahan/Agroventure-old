@@ -33,7 +33,7 @@ if(!empty($_POST)) {
 
 		} else {
 			//redirect to another page
-			header("Location: dashboard.php");
+			header("Location: sign-in.php");
 		}
 	}
 	$conn->close();
@@ -92,7 +92,7 @@ if(!empty($_POST)) {
                         <input type="text" class="form-control" id="f-name" placeholder="First name" name="fname" aria-label="First name" required />
                     </div>
                     <div class="col">
-                        <input type="text" class="form-control" id="l-name" placeholder="Last name" aria-label="Last name" required />
+                        <input type="text" class="form-control" id="l-name" placeholder="Last name" name="lname" aria-label="Last name" required />
                     </div>
                 </div>
                 <div class="row my-3">

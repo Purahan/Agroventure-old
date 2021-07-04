@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 	//die("Connection failed: " . $conn->connect_error);
 	$error='Error connecting to website. Please try again.';
 } else {
-	
+    
 }
 $conn->close();
 echo $error;
@@ -31,36 +31,35 @@ echo $error;
         <link rel="stylesheet" href="../style.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous" />
     </head>
-    <body>
-        <header class="p-3 mb-3 border-bottom">
+    <body class="bg-light bg-gradient">
+        <header class="p-3 mb-3 border-bottom bg-dark text-light">
             <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
                 <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
                 </a>
 
-                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2">Overview</a></li>
-                <li><a href="#" class="nav-link px-2">Inventory</a></li>
-                <li><a href="#" class="nav-link px-2">Customers</a></li>
-                <li><a href="#" class="nav-link px-2">Products</a></li>
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 nav-pills">
+                <li><a href="dashboard.php" class="link-light navbar-link nav-link px-2 active">Dashboard</a></li>
+                <li><a href="#" class="link-light navbar-link nav-link px-2">Orders</a></li>
+                <li><a href="#" class="link-light navbar-link nav-link px-2">Customers</a></li>
+                <li><a href="#" class="link-light navbar-link nav-link px-2">Products</a></li>
                 </ul>
 
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-                </form>
-
-                <div class="dropdown text-end">
-                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://github.com/mdo.png" alt="mdo" class="rounded-circle" width="32" height="32">
-                </a>
-                <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
-                    <li><a class="dropdown-item" href="#">New project...</a></li>
-                    <li><a class="dropdown-item" href="#">Settings</a></li>
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Sign out</a></li>
-                </ul>
+                <div class="row">
+                    <div class="col">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                        </svg>
+                        <a href="log_out.php">
+                            <button type="button" class="mr-3 px-2 py-1 btn btn-danger">Log-Out
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-open-fill" viewBox="0 0 16 16">
+                                    <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
+                                </svg>
+                            </button>
+                        </a>
+                    </div>
                 </div>
             </div>
             </div>
@@ -71,5 +70,12 @@ echo $error;
                 <?php echo $error;?>
             </div>
         <?php } ?>
+        <div class="container">
+            <div class="row text-light">
+                <div class="col bg-secondary">Welcome, <?php echo $_SESSION['fname'];?>.<br />
+                Your email Id is: <?php echo $_SESSION['email']?>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
