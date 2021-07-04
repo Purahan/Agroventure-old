@@ -51,19 +51,19 @@ if(!empty($_POST)) {
     </head>
     <body style="background-color: rgb(187, 203, 161); font-family: Arial, Helvetica, sans-serif;">
         <div id="header">
-            <header class="d-flex flex-wrap justify-content-center px-3 py-3 mb-4 border-bottom bg-light">
-                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+            <header class="d-flex flex-wrap justify-content-center px-3 py-3 mb-4 border-bottom bg-dark">
+                <a href="../index.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
                 <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-                <span class="fs-4">Agroventure</span>
+                <span class="fs-4 text-light">Agroventure</span>
                 </a>
         
                 <ul class="nav nav-pills">
-                <li class="navbar-link nav-item nav-link"><a href="../index.html" class="nav-link" aria-current="page">Home</a></li>
-                <li class="navbar-link nav-item nav-link"><a href="../index.html" class="nav-link">About</a></li>
-                <li class="navbar-link nav-item nav-link"><a href="../index.html" class="nav-link">Products</a></li>
-                <li class="navbar-link nav-item nav-link"><a href="../index.html" class="nav-link">Testimonial</a></li>
-                <li class="navbar-link nav-item nav-link"><a href="sign-in.php" class="nav-link">Login</a></li>
-                <li class="navbar-link nav-item nav-link"><a href="sign-up.php" class="nav-link active">Sign Up</a></li>
+                <li class="navbar-link nav-item nav-link"><a href="../index.html" class="link-light nav-link" aria-current="page">Home</a></li>
+                <li class="navbar-link nav-item nav-link"><a href="../index.html" class="link-light nav-link">About</a></li>
+                <li class="navbar-link nav-item nav-link"><a href="../index.html" class="link-light nav-link">Products</a></li>
+                <li class="navbar-link nav-item nav-link"><a href="../index.html" class="link-light nav-link">Testimonial</a></li>
+                <li class="navbar-link nav-item nav-link"><a href="sign-in.php" class="link-light nav-link">Login</a></li>
+                <li class="navbar-link nav-item nav-link"><a href="sign-up.php" class="link-light nav-link active">Sign Up</a></li>
                 </ul>
             </header>
         </div>
@@ -141,7 +141,7 @@ if(!empty($_POST)) {
                 <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 
                 <input type="submit" class="btn btn-success w-100 px-2 py-2 fs-5" value="Register" />
-                <p>Already have a Seller Account? <a href="Sign-in.html">Sign in</a>.</p>
+                <p>Already have a Seller Account? <a href="sign-in.php">Sign in</a>.</p>
             </div>
         </form>
         <script src="sign-up.js"></script>

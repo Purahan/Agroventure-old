@@ -17,14 +17,14 @@ if(!empty($_POST)) {
 		//die("Connection failed: " . $conn->connect_error);
 		$error='Error connecting to website. Please try again.';
 	} else {
-		$sql = "SELECT first_name, last_name, email, gender FROM `user` WHERE email='".$_POST['email']."' AND pwd=MD5('".$_POST['pwd']."')";
+		$sql = "SELECT first_name, last_name, email, gender FROM `users` WHERE email='".$_POST['email']."' AND pwd=MD5('".$_POST['pwd']."')";
 		$result = $conn->query($sql);
 
 		if ($result->num_rows > 0) {
 		// output data of each row
 			while($row = $result->fetch_assoc()) {
-				echo "Name:".$row["Username"]."<br> Email: ".$row["Email"]."<br>";
-				
+				echo "Name:".$row["first_name"]."<br> Email: ".$row["email"]."<br>";
+				//$_SESSION['id'] = $row["Username"];
 				$_SESSION['fname'] = $row["first_name"];
                 $_SESSION['lname'] = $row["last_name"];
 				$_SESSION['email'] = $row["email"];
@@ -44,24 +44,24 @@ if(!empty($_POST)) {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Agroventure-Login</title>
-        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="../style.css" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous" />
     </head>
     <body style="background-color: rgb(187, 203, 161); font-family: Arial, Helvetica, sans-serif;">
         <div id="header">
-            <header class="d-flex flex-wrap justify-content-center px-3 py-3 mb-4 border-bottom bg-light">
-                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+            <header class="d-flex flex-wrap justify-content-center px-3 py-3 mb-4 border-bottom bg-dark">
+                <a href="../index.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
                 <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-                <span class="fs-4">Agroventure</span>
+                <span class="fs-4 text-light">Agroventure</span>
                 </a>
         
                 <ul class="nav nav-pills">
-                <li class="navbar-link nav-item"><a href="index.html" class="nav-link" aria-current="page">Home</a></li>
-                <li class="navbar-link nav-item"><a href="index.html" class="nav-link">About</a></li>
-                <li class="navbar-link nav-item"><a href="index.html" class="nav-link">Products</a></li>
-                <li class="navbar-link nav-item"><a href="index.html" class="nav-link">Testimonial</a></li>
-                <li class="navbar-link nav-item"><a href="sign-in.html" class="nav-link active">Login</a></li>
-                <li class="navbar-link nav-item"><a href="sign-up.html" class="nav-link">Sign Up</a></li>
+                <li class="nav-item"><a href="index.html" class="link-light nav-link" aria-current="page">Home</a></li>
+                <li class="nav-item"><a href="index.html" class="link-light nav-link">About</a></li>
+                <li class="nav-item"><a href="index.html" class="link-light nav-link">Products</a></li>
+                <li class="nav-item"><a href="index.html" class="link-light nav-link">Testimonial</a></li>
+                <li class="nav-item"><a href="sign-in.php" class="link-light nav-link active">Login</a></li>
+                <li class="nav-item"><a href="sign-up.php" class="link-light nav-link">Sign Up</a></li>
                 </ul>
             </header>
         </div>
@@ -90,7 +90,7 @@ if(!empty($_POST)) {
                 <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 
                 <input type="submit" class="btn btn-success w-100 px-2 py-2 fs-5" value="Login" />
-                <p>Don't have a Seller Account? <a href="Sign-Up.html">Sign Up</a>.</p>
+                <p>Don't have a Seller Account? <a href="sign-up.html">Sign Up</a>.</p>
             </div>
         </form>
     </body>
