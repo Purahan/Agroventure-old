@@ -71,6 +71,13 @@ if(!empty($_POST)) {
                 <h1 class="fs-1">Login as a Seller</h1>
                 <p>Please fill in this form to Login in to your Seller Account.</p>
                 <hr>
+                <!--If any error it will be printed here-->
+                <?php if(!empty($error)) { ?>						
+						<div class="error alert alert-danger">
+							<?php echo $error;?>
+						</div>
+						<?php } ?>
+
                 <div class="row my-3">
                     <div class="col">
                         <label for="email" class="form-label">Username</label>
@@ -87,6 +94,14 @@ if(!empty($_POST)) {
                     <input type="password" class="form-control" placeholder="Password" name="pwd" id="pwd" required />
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col form-check">
+                        <input class="form-check-input" type="checkbox" onclick="showPassword()" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Show Password
+                        </label>
+                    </div>
+                </div>
                 <hr>
                 <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 
@@ -94,5 +109,15 @@ if(!empty($_POST)) {
                 <p>Don't have a Seller Account? <a href="sign-up.html">Sign Up</a>.</p>
             </div>
         </form>
+        <script>
+            function showPassword() {
+                var x = document.getElementById("pwd");
+                if (x.type === "password") {
+                    x.type = "text";
+                } else {
+                    x.type = "password";
+                }
+            } 
+        </script>
     </body>
 </html>

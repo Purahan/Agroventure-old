@@ -86,7 +86,7 @@
                     </div>
                     <div class="col">
                         <label for="phone" class="pb-1">Phone Number:</label>
-                        <input type="text" class="form-control" placeholder="Phone Number" name="phone" id="phone" required />
+                        <input type="tel" class="form-control" placeholder="Phone Number" name="phone" id="phone" required />
                     </div>
                 </div>
                 <hr>
