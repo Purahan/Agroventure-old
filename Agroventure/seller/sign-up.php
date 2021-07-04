@@ -33,7 +33,7 @@ if(!empty($_POST)) {
 
 		} else {
 			//redirect to another page
-			header("Location: welcome.php");
+			header("Location: dashboard.php");
 		}
 	}
 	$conn->close();
@@ -58,12 +58,12 @@ if(!empty($_POST)) {
                 </a>
         
                 <ul class="nav nav-pills">
-                <li class="navbar-link nav-item"><a href="index.html" class="nav-link" aria-current="page">Home</a></li>
-                <li class="navbar-link nav-item"><a href="index.html" class="nav-link">About</a></li>
-                <li class="navbar-link nav-item"><a href="index.html" class="nav-link">Products</a></li>
-                <li class="navbar-link nav-item"><a href="index.html" class="nav-link">Testimonial</a></li>
-                <li class="navbar-link nav-item"><a href="sign-in.html" class="nav-link">Login</a></li>
-                <li class="navbar-link nav-item"><a href="sign-up.html" class="nav-link active">Sign Up</a></li>
+                <li class="navbar-link nav-item nav-link"><a href="../index.html" class="nav-link" aria-current="page">Home</a></li>
+                <li class="navbar-link nav-item nav-link"><a href="../index.html" class="nav-link">About</a></li>
+                <li class="navbar-link nav-item nav-link"><a href="../index.html" class="nav-link">Products</a></li>
+                <li class="navbar-link nav-item nav-link"><a href="../index.html" class="nav-link">Testimonial</a></li>
+                <li class="navbar-link nav-item nav-link"><a href="sign-in.php" class="nav-link">Login</a></li>
+                <li class="navbar-link nav-item nav-link"><a href="sign-up.php" class="nav-link active">Sign Up</a></li>
                 </ul>
             </header>
         </div>
