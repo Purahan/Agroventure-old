@@ -31,7 +31,7 @@ echo $error;
         <link rel="stylesheet" href="../style.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous" />
     </head>
-    <body class="bg-light bg-gradient">
+    <body style="background-color: #ced4da;">
         <header class="p-3 mb-3 border-bottom bg-dark text-light">
             <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -51,7 +51,7 @@ echo $error;
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                             <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                        </svg>
+                        </svg><span class="display-name mx-2 my-1"><?php echo $_SESSION['fname']." ".$_SESSION['lname'];?></span>
                         <a href="log_out.php">
                             <button type="button" class="mr-3 px-2 py-1 btn btn-danger">Log-Out
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-open-fill" viewBox="0 0 16 16">
@@ -64,16 +64,16 @@ echo $error;
             </div>
             </div>
         </header>
+        <div class="container my-0 px-3 py-4 bg-light">
         <!--If any error it will be printed here-->
         <?php if(!empty($error)) { ?>						
-            <div class="error">
+            <div class="row error">
                 <?php echo $error;?>
             </div>
         <?php } ?>
-        <div class="container">
-            <div class="row text-light">
-                <div class="col bg-secondary">Welcome, <?php echo $_SESSION['fname'];?>.<br />
-                Your email Id is: <?php echo $_SESSION['email']?>
+            <div class="row text-dark">
+                <div class="col">
+                    Products:
                 </div>
             </div>
         </div>

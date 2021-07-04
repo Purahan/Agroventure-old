@@ -17,7 +17,7 @@ if(!empty($_POST)) {
 		//die("Connection failed: " . $conn->connect_error);
 		$error='Error connecting to website. Please try again.';
 	} else {
-		$sql = "SELECT first_name, last_name, email, gender FROM `users` WHERE email='".$_POST['email']."' AND pwd=MD5('".$_POST['pwd']."')";
+		$sql = "SELECT id, first_name, last_name, email, gender FROM `users` WHERE email='".$_POST['email']."' AND pwd=MD5('".$_POST['pwd']."')";
 		$result = $conn->query($sql);
 
 		if ($result->num_rows > 0) {
@@ -25,6 +25,7 @@ if(!empty($_POST)) {
 			while($row = $result->fetch_assoc()) {
 				echo "Name:".$row["first_name"]."<br> Email: ".$row["email"]."<br>";
 				//$_SESSION['id'] = $row["Username"];
+                $_SESSION['id'] = $row['id'];
 				$_SESSION['fname'] = $row["first_name"];
                 $_SESSION['lname'] = $row["last_name"];
 				$_SESSION['email'] = $row["email"];
