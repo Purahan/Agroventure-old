@@ -1,3 +1,43 @@
+<?php
+	//Start Session
+	session_start();
+?>
+<?php
+$error='';
+if(!empty($_POST)) {
+	$servername = "localhost";
+	$username = "root";
+	$password = "";
+	$dbname = "agroventure";
+
+	// Create connection
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	// Check connection
+	if ($conn->connect_error) {
+		//die("Connection failed: " . $conn->connect_error);
+		$error='Error connecting to website. Please try again.';
+	} else {
+		$sql = "SELECT id, first_name, last_name, email, gender FROM `users` WHERE email='".$_POST['email']."' AND pwd=MD5('".$_POST['pwd']."')";
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) {
+		// output data of each row
+			while($row = $result->fetch_assoc()) {
+				echo "Name:".$row["first_name"]."<br> Email: ".$row["email"]."<br>";
+				//$_SESSION['id'] = $row["Username"];
+                $_SESSION['id'] = $row['id'];
+				$_SESSION['fname'] = $row["first_name"];
+                $_SESSION['lname'] = $row["last_name"];
+				$_SESSION['email'] = $row["email"];
+				$_SESSION['gender'] = $row["gender"];
+				header("Location: shop.php");
+			}
+		} else {
+			$error='Username or Password is incorrect.';
+		}
+	}
+	$conn->close();
+}?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -21,8 +61,8 @@
                 <li class="nav-item"><a href="index.html" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="index.html" class="nav-link">Products</a></li>
                 <li class="nav-item"><a href="index.html" class="nav-link">Testimonial</a></li>
-                <li class="nav-item"><a href="sign-in.html" class="nav-link active">Login</a></li>
-                <li class="nav-item"><a href="sign-up.html" class="nav-link">Sign Up</a></li>
+                <li class="nav-item"><a href="sign-in.php" class="nav-link active">Login</a></li>
+                <li class="nav-item"><a href="sign-up.php" class="nav-link">Sign Up</a></li>
                 </ul>
             </header>
         </div>

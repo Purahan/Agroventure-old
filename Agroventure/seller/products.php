@@ -6,21 +6,33 @@
 ?>
 <?php
 $error='';
-if(!empty($_POST)) {
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$dbname = "agroventure";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "agroventure";
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
+$sql = "SELECT * FROM `categories` WHERE 1";
+$categories = $conn->query($sql);
+if(!empty($_POST)) {
 	//Check connection
 	if ($conn->connect_error) {
 		//die("Connection failed: " . $conn->connect_error);
 		$error='Error connecting to website. Please try again.';
 	} else {
+		$arr=explode('.', $_POST['pic-1']);
+		$_POST['pic-1'] = uniqid().".".$arr[count($arr)-1];
+		$arr=explode('.', $_POST['pic-2']);
+		$_POST['pic-2'] = uniqid().".".$arr[count($arr)-1];
+		$arr=explode('.', $_POST['pic-3']);
+		$_POST['pic-3'] = uniqid().".".$arr[count($arr)-1];
+		$arr=explode('.', $_POST['pic-4']);
+		$_POST['pic-4'] = uniqid().".".$arr[count($arr)-1];
+		$arr=explode('.', $_POST['pic-5']);
+		$_POST['pic-5'] = uniqid().".".$arr[count($arr)-1];
 
-		$sql = "INSERT INTO `products` (user_id, name, description, price, created_on) VALUES ('".$_SESSION['id']."', '".$_POST['name']."', '".$_POST['description']."', '".$_POST['price']."', '".date("Y-m-d")."')";
+		$sql = "INSERT INTO `products` (user_id, name, description, picture_1, picture_2, picture_3, picture_4, picture_5, price, category_id, created_on) VALUES ('".$_SESSION['id']."', '".$_POST['name']."', '".$_POST['description']."', '".$_POST['pic-1']."', '".$_POST['pic-2']."', '".$_POST['pic-3']."', '".$_POST['pic-4']."', '".$_POST['pic-5']."', '".$_POST['price']."', '".$_POST['category']."', '".date("Y-m-d")."')";
 
 		if ($conn->query($sql) === FALSE) {
 			//die("Error: " . $sql . "<br>" . $conn->error);
@@ -102,14 +114,15 @@ if(!empty($_POST)) {
 					<div class="col myb-2">
 						<label class="visually-hidden" for="specificSizeSelect">Preference</label>
 						<select class="form-select" id="category" name="category" required>
-							<option selected value="fruits">Fruits</option>
-							<option value="vegetables">Vegetables</option>
-							<option value="handicraft">Handicraft</option>
-							<option value="pots">Pots</option>
-							<option value="dairy-products">Dairy Products</option>
-							<option value="poultry-products">Poultry Products</option>
-							<option value="handloom">Handloom</option>
-							<option value="others">Others</option>
+							<option value="">Select Category</option>
+							<?php
+								if ($categories->num_rows > 0) {
+									while($row = $categories->fetch_assoc()) {
+										echo "Name:".$row["Username"]."<br> Email: ".$row["Email"]."<br>";
+										echo '<option value="'.$row["id"].'">'.$row["name"].'</option>';
+									}
+								}
+							?>
 						</select>
 					</div>
 					<div class="col mb-2">
@@ -131,29 +144,29 @@ if(!empty($_POST)) {
 						</div>
 					</div>
 					<div class="col-7">
-						<textarea class="form-control" name="description"></textarea>
+						<textarea class="form-control" name="description" placeholder="Your product's Description" required></textarea>
 					</div>
 				</div>
 				<div class="row-cols-4">
 					<div class="col-4 mb-3">
 						<label for="pics" class="fs-4 form-label">Select Pictures</label><br />
-						Picture-1<input class="form-control" type="file" name="pic-1">
+						Picture-1<input class="form-control" type="file" name="pic-1" accept="image/*" single required />
 					</div>
 					<div class="col-4 mb-3">
-						Picture-2<input class="form-control" type="file" name="pic-2">
+						Picture-2<input class="form-control" type="file" name="pic-2" accept="image/*" single required />
 					</div>
 					<div class="col-4 mb-3">
-						Picture-3<input class="form-control" type="file" name="pic-3">
+						Picture-3<input class="form-control" type="file" name="pic-3" accept="image/*" single required />
 					</div>
 					<div class="col-4 mb-3">
-						Picture-4<input class="form-control" type="file" name="pic-4">
+						Picture-4<input class="form-control" type="file" name="pic-4" accept="image/*" single required />
 					</div>
 					<div class="col-4 mb-3">
-						Picture-5<input class="form-control" type="file" name="pic-5">
+						Picture-5<input class="form-control" type="file" name="pic-5" accept="image/*" single required />
 					</div>
 				</div>
 				<div class="row justify-content-center">
-					<a href="products.php"><input type="submit" class="btn btn-info" value="Add Product" /></a>
+					<a href="products.php"><input type="submit" class="btn btn-info text-light" value="Add Product" /></a>
 				</div>
 			</form>
 		</div>
